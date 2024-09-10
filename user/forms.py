@@ -6,8 +6,8 @@ from django.core.exceptions import ValidationError
 
 
 class RegisterUser(UserCreationForm):
-    password1 = forms.CharField(write_only=True,widget=forms.TextInput(attrs={'class':'form-control my-5', 'placeholder':'••••••••••••'}))
-    password2 = forms.CharField(write_only=True,widget=forms.TextInput(attrs={'class':'form-control my-5', 'placeholder':'••••••••••••'}))
+    password1 = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control my-5', 'placeholder':'••••••••••••'}))
+    password2 = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control my-5', 'placeholder':'••••••••••••'}))
 
     class Meta:
         model = User
@@ -23,4 +23,4 @@ class RegisterUser(UserCreationForm):
 
 class LoginUser(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control my-5', 'placeholder':'Username'}))
-    password = forms.CharField(write_only=True,widget=forms.TextInput(attrs={'class':'form-control my-5', 'placeholder':'••••••••••••'}))
+    password = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control my-5', 'placeholder':'••••••••••••'}))

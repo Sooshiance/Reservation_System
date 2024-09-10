@@ -13,7 +13,6 @@ def create_profile(sender, instance, created, **kwargs):
             username=user.username,
             first_name=user.first_name,
             last_name=user.last_name,
-            role=user.role,
         )
 
 
