@@ -1,0 +1,15 @@
+{% extends 'root.html' %}
+
+
+{% block title %}
+    
+{% endblock title %}
+
+{% block doc %}
+    <form action="{% url 'booking:reserve' %}" method="post">
+        {{form.as_p}}
+        {% csrf_token %}
+        <input type="submit" value="submit">
+    </form>
+{% endblock doc %}
+    

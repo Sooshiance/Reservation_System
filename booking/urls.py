@@ -7,4 +7,6 @@ app_name = "booking"
 
 urlpatterns = [
     path("", views.home, name="home"),
+
+    path("reserve/", views.userTicketView, name='reserve'),
 ]
