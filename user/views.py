@@ -9,7 +9,7 @@ from user.forms import RegisterUser, LoginUser
 def logoutUser(request):
     auth.logout(request)
     messages.info(request, '')
-    return redirect('')
+    return redirect('booking:home')
 
 
 def loginUser(request):
@@ -27,10 +27,10 @@ def loginUser(request):
                 return redirect("")
             else:
                 messages.error(request, "user not found")
-                return redirect("")
+                return redirect("user:login")
         else:
             messages.error(request, "Form is not valid")
-            return redirect("")
+            return redirect("user:login")
     else:
         form = LoginUser()
     return render(request, "user/login.html", {'form':form})
@@ -39,7 +39,7 @@ def loginUser(request):
 def registerUser(request):
     if request.user.is_authenticated:
         messages.warning(request, '')
-        return redirect("")
+        return redirect("booking:home")
     elif request.method == 'POST':
         form = RegisterUser(request.POST)
         if form.is_valid():
@@ -55,10 +55,10 @@ def registerUser(request):
             user.is_active = True
             user.save()
             messages.success(request, '')
-            return redirect('')
+            return redirect('user:login')
         else:
             messages.error(request, f'{form.errors}')
-            return redirect('')
+            return redirect('user:register')
     else:
         form = RegisterUser()
     return render(request, "user/register.html", {'form': form})
@@ -71,4 +71,4 @@ def userProfile(request):
         return render(request, "user/profile.html", {'profile':p})
     else:
         messages.info(request, "")
-        return redirect("")
+        return redirect("user:login")
