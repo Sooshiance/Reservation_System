@@ -23,8 +23,8 @@ def loginUser(request):
             password = form.cleaned_data["password"]
             user = auth.authenticate(request=request, username=username, password=password)
             if user is not None:
-                auth.login(request)
-                return redirect("")
+                auth.login(request, user=user)
+                return redirect("booking:home")
             else:
                 messages.error(request, "user not found")
                 return redirect("user:login")

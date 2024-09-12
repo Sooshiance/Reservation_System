@@ -1,0 +1,21 @@
+{% extends 'root.html' %}
+
+{% block title %}
+    All Train
+{% endblock title %}
+
+{% block doc %}
+    <div>
+        
+        {% for t in trains %}
+            <p>
+                <p>
+                    {{t.title}}
+                </p>
+                <a href="{% url 'club:rating' t.pk %}">Your opinion about this Train</a>
+            </p>
+        {% endfor %}
+            
+    </div>
+{% endblock doc %}
+    
