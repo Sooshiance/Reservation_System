@@ -6,6 +6,17 @@
 
 {% block doc %}
     <p>
-        user profile
+        user profile : {{profile.username}}
     </p>
+
+    
+    {% for obj in ticket %}
+        <h1>
+            <a href="{% url 'booking:delete' obj.pk %}">
+                {{obj.user.username}}
+            </a>
+        </h1>
+    {% endfor %}
+
+
 {% endblock doc %}

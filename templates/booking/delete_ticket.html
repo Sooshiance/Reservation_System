@@ -1,0 +1,24 @@
+{% extends 'root.html' %}
+
+{% block title %}
+    Delete Ticket
+{% endblock title %}
+
+{% block doc %}
+    <h1>
+        Are you sure to delete this Ticket ?
+    </h1>
+    <h2>
+        {{ticket.date}}
+    </h2>
+    <form action="{% url 'booking:delete' ticket.pk %}" method="post">
+        <h2>
+            Delete the Ticket
+        </h2>
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">
+            Delete
+        </button>
+    </form>
+{% endblock doc %}
+    

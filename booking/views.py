@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.exceptions import ValidationError
 
 from booking.models import ReserveTicket, Departure
@@ -9,7 +9,7 @@ def home(request):
     return render(request, "booking/index.html")
 
 
-def userTicketView(request):
+def userReserveTicketView(request):
     if request.user.is_authenticated:
         if request.method == "POST":
             form = ReserveTicketForm(request.POST)
@@ -33,5 +33,21 @@ def userTicketView(request):
         else:
             form = ReserveTicketForm()
             return render(request, "booking/reserve.html", {'form': form})
+    else:
+        return redirect("user:login")
+
+
+def userDeleteTicketView(request, pk):
+    if request.user.is_authenticated:
+        user = request.user
+        if request.method == "POST":
+            ticket = ReserveTicket.objects.get(pk=pk,user=user)
+            try:
+                ticket.delete()
+                return redirect("user:profile")
+            except:
+                raise ValueError("Object does not exist!")
+        ticket = get_object_or_404(ReserveTicket, pk=pk)
+        return render(request, "booking/delete_ticket.html", {'ticket':ticket})
     else:
         return redirect("user:login")

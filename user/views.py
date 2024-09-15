@@ -4,6 +4,7 @@ from django.contrib import auth, messages
 
 from user.models import Profile
 from user.forms import RegisterUser, LoginUser
+from booking.models import ReserveTicket
 
 
 def logoutUser(request):
@@ -67,8 +68,9 @@ def registerUser(request):
 def userProfile(request):
     if request.user.is_authenticated:
         user = request.user
+        t = ReserveTicket.objects.filter(user=user)
         p = Profile.objects.get(user=user)
-        return render(request, "user/profile.html", {'profile':p})
+        return render(request, "user/profile.html", {'profile':p,'ticket':t})
     else:
         messages.info(request, "")
         return redirect("user:login")
