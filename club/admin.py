@@ -4,11 +4,11 @@ from club.models import FAQ, Rating
 
 
 class FAQAdmin(admin.ModelAdmin):
-    list_display = ('title',)
+    list_display = ("title",)
 
 
 class RatingAdmin(admin.ModelAdmin):
-    list_display = ('user',)
+    list_display = ("user",)
 
 
 admin.site.register(FAQ, FAQAdmin)

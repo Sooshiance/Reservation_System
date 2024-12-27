@@ -4,15 +4,15 @@ from booking.models import Departure, Ticket, ReserveTicket
 
 
 class DepartureAdmin(admin.ModelAdmin):
-    list_display = ('date',)
+    list_display = ("date",)
 
 
 class TicketAdmin(admin.ModelAdmin):
-    list_display = ('title',)
+    list_display = ("title",)
 
 
 class ReserveTicketAdmin(admin.ModelAdmin):
-    list_display = ('user',)
+    list_display = ("user",)
 
 
 admin.site.register(Departure, DepartureAdmin)

@@ -4,7 +4,6 @@ from .models import ReserveTicket
 
 
 class ReserveTicketForm(forms.ModelForm):
-    
     class Meta:
         model = ReserveTicket
-        fields = ['title', 'date']
+        fields = ["title", "date"]

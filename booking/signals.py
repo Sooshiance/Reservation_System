@@ -22,4 +22,6 @@ def update_capacity_on_add(sender, instance, action, **kwargs):
             departure.save()
             print(f"New departure capacity: {departure.capacity}")
         else:
-            raise ValidationError(f"No capacity left for {departure.train.title} on {departure.date}")
+            raise ValidationError(
+                f"No capacity left for {departure.train.title} on {departure.date}"
+            )

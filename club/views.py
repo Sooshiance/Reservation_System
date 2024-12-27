@@ -7,12 +7,12 @@ from booking.models import Ticket
 
 def seeQuestion(request):
     q = FAQ.objects.all()
-    return render(request, "club/faq.html",{'questions':q})
+    return render(request, "club/faq.html", {"questions": q})
 
 
 def allTrain(request):
     t = Ticket.objects.all()
-    return render(request, "club/allTrain.html", {"trains":t})
+    return render(request, "club/allTrain.html", {"trains": t})
 
 
 def sendComment(request, pk):
@@ -23,12 +23,14 @@ def sendComment(request, pk):
             if form.is_valid():
                 txt = form.cleaned_data["txt"]
                 vote = form.cleaned_data["vote"]
-                Rating.objects.create(txt=txt,vote=vote,user=request.user,ticket=t).save()
+                Rating.objects.create(
+                    txt=txt, vote=vote, user=request.user, ticket=t
+                ).save()
                 return redirect("booking:home")
             else:
                 return redirect("club:rating")
         else:
             form = RatingForm()
-            return render(request, "club/rating.html", {"form":form})
+            return render(request, "club/rating.html", {"form": form})
     else:
         return redirect("user:login")
